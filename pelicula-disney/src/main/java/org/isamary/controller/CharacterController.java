@@ -1,7 +1,6 @@
 package org.isamary.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CharacterController {
@@ -11,6 +10,21 @@ public class CharacterController {
     @GetMapping(CHARACTERS)
     public String getCharacters(){
         return "marylindaguba";
+    }
+
+    @PostMapping(CHARACTERS)
+    public String createCharacter(){
+        return "created character";
+    }
+
+    @DeleteMapping(CHARACTERS)
+    public String deleteCharacter(){
+        return "delete character";
+    }
+
+    @PutMapping(CHARACTERS)
+    public String updateCharacter(){
+        return "update character";
     }
 
 
