@@ -1,6 +1,7 @@
 package org.isamary.service;
 
 import org.isamary.dto.CharacterDTO;
+import org.isamary.dto.CharacterDetailDTO;
 import org.isamary.entity.Character;
 import org.isamary.repository.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,6 @@ public class CharacterService {
         characterRepository.delete(character);
     }
 
-
-
     public List<CharacterDTO> charactersListToCharactersDTO(List<Character> characterList){
         return characterList
                 .stream()
@@ -46,5 +45,15 @@ public class CharacterService {
                 .collect(Collectors.toList());
     }
 
+    public List<CharacterDetailDTO> characterListToCharacterDetailsDTO(List<Character> characterList){
+        return characterList
+                .stream()
+                .map(Character::convertCharacterToCharacterDetailDTO)
+                .collect(Collectors.toList());
+    }
 
+
+    public List<CharacterDetailDTO> characterDetailsList() {
+        return characterListToCharacterDetailsDTO(characterRepository.findAll());
+    }
 }

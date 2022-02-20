@@ -1,6 +1,7 @@
 package org.isamary.controller;
 
 import org.isamary.dto.CharacterDTO;
+import org.isamary.dto.CharacterDetailDTO;
 import org.isamary.entity.Character;
 import org.isamary.repository.CharacterRepository;
 import org.isamary.service.CharacterService;
@@ -41,6 +42,11 @@ public class CharacterController {
             charactersDTO = characterService.listAll();
         }
         return charactersDTO;//devuelve la lista de personajes
+    }
+    @GetMapping("/characters/detail")
+    public List<CharacterDetailDTO> detailsCharacters(){
+        return characterService.characterDetailsList();
+
     }
 
     @PostMapping(CHARACTERS)

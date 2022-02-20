@@ -3,9 +3,11 @@ package org.isamary.entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.isamary.dto.CharacterDTO;
+import org.isamary.dto.CharacterDetailDTO;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table (name="personage")
@@ -42,5 +44,13 @@ public class Character {
     public CharacterDTO convertCharacterToCharacterDTO(){
         return new CharacterDTO(this.getImage(), this.getName()) ;
     }
+    public CharacterDetailDTO convertCharacterToCharacterDetailDTO(){
+        List<String> moviesTitle = movies
+                .stream()
+                .map(Movie::getTitle)
+                .collect(Collectors.toList());
+        return new CharacterDetailDTO(image,name,age,history,weight,moviesTitle);
+    }
+
 
 }
