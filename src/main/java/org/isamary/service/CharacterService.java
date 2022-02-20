@@ -1,11 +1,14 @@
 package org.isamary.service;
 
+import org.isamary.dto.CharacterDTO;
 import org.isamary.entity.Character;
 import org.isamary.repository.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CharacterService {
@@ -14,19 +17,18 @@ public class CharacterService {
     private CharacterRepository characterRepository;
 
 
-    public List<Character> listAllByName(String name) {
-        return characterRepository.findCharacterByName(name);
+    public List<CharacterDTO> listAllByName(String name) {
+        return charactersListToCharactersDTO(characterRepository.findCharacterByName(name));
     }
-    public List<Character> listAllByAge(int age) {
-        return characterRepository.findCharacterByAge(age);
+    public List<CharacterDTO> listAllByAge(int age) {
+        return charactersListToCharactersDTO(characterRepository.findCharacterByAge(age));
     }
-    public List<Character> listAllByMovie(String movie) {
-        return characterRepository.findCharacterByMovie(movie);
+    public List<CharacterDTO> listAllByMovie(String movie) {
+        return charactersListToCharactersDTO(characterRepository.findCharacterByMovie(movie));
     }
-    public List<Character> listAll() {
-        return characterRepository.findAll();
+    public List<CharacterDTO> listAll() {
+        return charactersListToCharactersDTO(characterRepository.findAll());
     }
-
 
     public Character save(Character character){
         return characterRepository.save(character);
@@ -34,4 +36,15 @@ public class CharacterService {
     public void delete(Character character) {
         characterRepository.delete(character);
     }
+
+
+
+    public List<CharacterDTO> charactersListToCharactersDTO(List<Character> characterList){
+        return characterList
+                .stream()
+                .map(Character::convertCharacterToCharacterDTO)
+                .collect(Collectors.toList());
+    }
+
+
 }

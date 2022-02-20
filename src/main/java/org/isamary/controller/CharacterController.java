@@ -1,5 +1,6 @@
 package org.isamary.controller;
 
+import org.isamary.dto.CharacterDTO;
 import org.isamary.entity.Character;
 import org.isamary.repository.CharacterRepository;
 import org.isamary.service.CharacterService;
@@ -23,22 +24,23 @@ public class CharacterController {
 
 
     @GetMapping(CHARACTERS)
-    public List<Character> getCharacters(
+    public List<CharacterDTO> getCharacters(
             @RequestParam(name="name",required = false) String name,
             @RequestParam(name="age",required = false) Integer age,
             @RequestParam(name="movie",required = false) String movie){
-        List<Character> characterList;
+        List<CharacterDTO> charactersDTO;
 
-        if(name!=null){
-            characterList = characterService.listAllByName(name);
+
+       if(name!=null){
+            charactersDTO = characterService.listAllByName(name);
         }else if(age!=null){
-            characterList = characterService.listAllByAge(age);
+            charactersDTO = characterService.listAllByAge(age);
         }else if (movie!=null){
-            characterList = characterService.listAllByMovie(movie);
+            charactersDTO = characterService.listAllByMovie(movie);
         }else {
-            characterList = characterService.listAll();
+            charactersDTO = characterService.listAll();
         }
-        return characterList;//devuelve la lista de personajes
+        return charactersDTO;//devuelve la lista de personajes
     }
 
     @PostMapping(CHARACTERS)

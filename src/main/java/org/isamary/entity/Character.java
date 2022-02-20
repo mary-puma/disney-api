@@ -2,6 +2,7 @@ package org.isamary.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.isamary.dto.CharacterDTO;
 
 import javax.persistence.*;
 import java.util.List;
@@ -37,5 +38,9 @@ public class Character {
             joinColumns=@JoinColumn(name="personage_id"),
             inverseJoinColumns=@JoinColumn(name="movie_id"))
     private List<Movie> movies;
+
+    public CharacterDTO convertCharacterToCharacterDTO(){
+        return new CharacterDTO(this.getImage(), this.getName()) ;
+    }
 
 }
