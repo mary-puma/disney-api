@@ -3,6 +3,7 @@ package org.isamary.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.isamary.dto.MovieDTO;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -36,4 +37,8 @@ public class Movie {
             joinColumns=@JoinColumn(name="movie_id"),
             inverseJoinColumns=@JoinColumn(name="personage_id"))
     private List<Character> characters;
+
+    public MovieDTO convertMovieToMovieDTO(){
+        return new MovieDTO(getImage(),getTitle(),getCreation_date());
+    }
 }

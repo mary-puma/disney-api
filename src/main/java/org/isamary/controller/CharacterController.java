@@ -5,7 +5,7 @@ import org.isamary.dto.CharacterDetailDTO;
 import org.isamary.entity.Character;
 import org.isamary.repository.CharacterRepository;
 import org.isamary.service.CharacterService;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

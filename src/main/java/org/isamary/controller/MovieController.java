@@ -1,7 +1,8 @@
 package org.isamary.controller;
 
+import org.isamary.dto.MovieDTO;
 import org.isamary.entity.Movie;
-import org.isamary.repository.MovieRepository;
+import org.isamary.service.MovieService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,29 +11,29 @@ import java.util.List;
 public class MovieController {
 
     private static final String MOVIES = "/movies";
-    private final MovieRepository movieRepository;
+    private final MovieService movieService;
 
-    public MovieController(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
     }
 
     @GetMapping(MOVIES)
-    public List<Movie> getMovies(){
-        return this.movieRepository.findAll();
+    public List<MovieDTO> movieDTOList(){
+        return this.movieService.movieDTOList();
     }
 
     @PostMapping(MOVIES)
     public Movie salveMovie(@RequestBody Movie movie){
-        return this.movieRepository.save(movie);
+        return this.movieService.saveMovie(movie);
     }
     @DeleteMapping(MOVIES)
     public  void deleteMovie(@RequestBody Movie movie){
-        this.movieRepository.delete(movie);
+        this.movieService.deleteMovie(movie);
     }
 
     @PutMapping(MOVIES)
     public Movie updateMovie(@RequestBody Movie movie){
-        return this.movieRepository.save(movie);
+        return this.movieService.saveMovie(movie);
     }
 
 

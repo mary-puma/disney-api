@@ -20,4 +20,5 @@ public interface CharacterRepository extends JpaRepository<Character, Long> {
     @Query("SELECT c FROM Character c WHERE c.age=?1")
     List<Character> findCharacterByAge(int age);
 
+
 }

@@ -15,6 +15,4 @@ public class CharacterDTO {
         this.name = name;
     }
 
-
-
 }

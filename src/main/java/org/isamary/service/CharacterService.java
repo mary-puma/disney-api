@@ -5,6 +5,7 @@ import org.isamary.dto.CharacterDetailDTO;
 import org.isamary.entity.Character;
 import org.isamary.repository.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -56,4 +57,8 @@ public class CharacterService {
     public List<CharacterDetailDTO> characterDetailsList() {
         return characterListToCharacterDetailsDTO(characterRepository.findAll());
     }
+    /*public List<CharacterDetailDTO> characterDetailsList(Sort.Direction order) {
+        return characterListToCharacterDetailsDTO(characterRepository.findAll(Sort.by(order, "name")));
+    }*/
+
 }

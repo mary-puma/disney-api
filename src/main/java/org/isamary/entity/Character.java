@@ -51,6 +51,4 @@ public class Character {
                 .collect(Collectors.toList());
         return new CharacterDetailDTO(image,name,age,history,weight,moviesTitle);
     }
-
-
 }
