@@ -1,6 +1,7 @@
 package org.isamary.controller;
 
 import org.isamary.dto.MovieDTO;
+import org.isamary.dto.MovieDetailDTO;
 import org.isamary.entity.Movie;
 import org.isamary.service.MovieService;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,10 @@ public class MovieController {
     @GetMapping(MOVIES)
     public List<MovieDTO> movieDTOList(){
         return this.movieService.movieDTOList();
+    }
+    @GetMapping("/movies/details")
+    public List<MovieDetailDTO> movieDetailDTOList(){
+        return this.movieService.movieDetailDTOList();
     }
 
     @PostMapping(MOVIES)

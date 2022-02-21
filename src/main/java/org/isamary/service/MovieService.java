@@ -3,6 +3,7 @@ package org.isamary.service;
 
 import org.isamary.dto.CharacterDTO;
 import org.isamary.dto.MovieDTO;
+import org.isamary.dto.MovieDetailDTO;
 import org.isamary.entity.Movie;
 import org.isamary.repository.CharacterRepository;
 import org.isamary.repository.MovieRepository;
@@ -27,12 +28,19 @@ public class MovieService {
                 .map(Movie::convertMovieToMovieDTO)
                 .collect(Collectors.toList());
     }
-
+    public List<MovieDetailDTO> movieDetailDTOList(){
+        return convertMovieListToMovieDetailDTOList(movieRepository.findAll());
+    }
+    public List<MovieDetailDTO> convertMovieListToMovieDetailDTOList(List<Movie> movies){
+        return movies
+                .stream()
+                .map(Movie::convertMovieToMovieDetailDTO)
+                .collect(Collectors.toList());
+    }
     public Movie saveMovie(Movie movie) {
         return movieRepository.save(movie);
 
     }
-
     public void deleteMovie(Movie movie) {
      movieRepository.delete(movie);
     }

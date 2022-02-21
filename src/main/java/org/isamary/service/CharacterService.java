@@ -51,8 +51,7 @@ public class CharacterService {
                 .stream()
                 .map(Character::convertCharacterToCharacterDetailDTO)
                 .collect(Collectors.toList());
-    }
-
+    }//es similar a un for each lo que hacemos aca es pasar de la lista personajes los campos que queremos a la lista personajes dto
 
     public List<CharacterDetailDTO> characterDetailsList() {
         return characterListToCharacterDetailsDTO(characterRepository.findAll());
