@@ -34,11 +34,14 @@ public class Movie {
     @Column(name="score")
     private int score;
 
-    @ManyToMany(fetch = FetchType.EAGER)//para relacionar tablas
+   @ManyToMany()//para relacionar tablas
     @JoinTable(name = "personage_movie",
             joinColumns=@JoinColumn(name="movie_id"),
             inverseJoinColumns=@JoinColumn(name="personage_id"))
+
     private List<Character> characters;
+
+
 
     public MovieDTO convertMovieToMovieDTO(){
         return new MovieDTO(getImage(),getTitle(),getCreation_date());
@@ -51,4 +54,11 @@ public class Movie {
         return new MovieDetailDTO(getImage(),getTitle(),getCreation_date(),getScore(),charactersName);
 
     }
+
+
+    @ManyToMany()//para relacionar tablas
+    @JoinTable(name = "movie_genre",
+            joinColumns=@JoinColumn(name="movie_id"),
+            inverseJoinColumns=@JoinColumn(name="genre_id"))
+    private List<Genre> genres;
 }

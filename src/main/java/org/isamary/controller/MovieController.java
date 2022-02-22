@@ -4,6 +4,7 @@ import org.isamary.dto.MovieDTO;
 import org.isamary.dto.MovieDetailDTO;
 import org.isamary.entity.Movie;
 import org.isamary.service.MovieService;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +20,22 @@ public class MovieController {
     }
 
     @GetMapping(MOVIES)
-    public List<MovieDTO> movieDTOList(){
-        return this.movieService.movieDTOList();
+    public List<MovieDTO> movieDTOList(
+            @RequestParam(name="title",required = false) String title,
+            @RequestParam(name="genre",required = false) String genre,
+            @RequestParam(name = "order", required = false) Sort.Direction order){
+        List<MovieDTO> movieDTOList;
+        if (title!=null){
+            movieDTOList=movieService.movieDTOListByTitle(title);
+        }else if (genre!=null){
+            movieDTOList = movieService.movieDTOListByGenre(genre);
+        }else if (order!=null){
+            movieDTOList = movieService.movieDTOListOrderByCreationDate(order);
+
+        } else {
+            movieDTOList = movieService.movieDTOList();
+        }
+        return movieDTOList;
     }
     @GetMapping("/movies/details")
     public List<MovieDetailDTO> movieDetailDTOList(){
@@ -35,11 +50,11 @@ public class MovieController {
     public  void deleteMovie(@RequestBody Movie movie){
         this.movieService.deleteMovie(movie);
     }
-
     @PutMapping(MOVIES)
     public Movie updateMovie(@RequestBody Movie movie){
         return this.movieService.saveMovie(movie);
     }
+
 
 
 }

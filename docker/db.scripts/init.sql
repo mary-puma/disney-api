@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS personage_movie
     REFERENCES movie (`id`)
     ON DELETE NO ACTION ON UPDATE NO ACTION
 );
-CREATE TABLE IF NOT EXISTS movie_personage
+CREATE TABLE IF NOT EXISTS movie_genre
 (
     movie_id         BIGINT NOT NULL,
     genre_id         BIGINT NOT NULL,
@@ -60,3 +60,4 @@ CREATE TABLE IF NOT EXISTS movie_personage
     ON DELETE NO ACTION ON UPDATE NO ACTION
 
 )
+

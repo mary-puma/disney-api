@@ -1,13 +1,13 @@
 package org.isamary.service;
 
 
-import org.isamary.dto.CharacterDTO;
+
 import org.isamary.dto.MovieDTO;
 import org.isamary.dto.MovieDetailDTO;
 import org.isamary.entity.Movie;
-import org.isamary.repository.CharacterRepository;
 import org.isamary.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,9 +39,24 @@ public class MovieService {
     }
     public Movie saveMovie(Movie movie) {
         return movieRepository.save(movie);
-
     }
     public void deleteMovie(Movie movie) {
      movieRepository.delete(movie);
     }
+
+    public List<MovieDTO> movieDTOListByTitle(String title){
+        return convertMovieListToMovieDTOList(movieRepository.findMovieByTitle(title));
+    }
+    public List<MovieDTO> movieDTOListByGenre(String genre){
+        return convertMovieListToMovieDTOList(movieRepository.findMovieByGenre(genre));
+    }
+    public List<MovieDTO> movieDTOListOrderByCreationDate(Sort.Direction order){
+
+        if(order.isDescending())
+            return convertMovieListToMovieDTOList(movieRepository.orderByCreationDateDesc());
+        else
+            return convertMovieListToMovieDTOList(movieRepository.orderByCreationDateAsc());
+    }
+
+
 }
