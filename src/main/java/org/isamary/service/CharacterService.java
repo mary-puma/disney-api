@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,8 +56,5 @@ public class CharacterService {
     public List<CharacterDetailDTO> characterDetailsList() {
         return characterListToCharacterDetailsDTO(characterRepository.findAll());
     }
-    /*public List<CharacterDetailDTO> characterDetailsList(Sort.Direction order) {
-        return characterListToCharacterDetailsDTO(characterRepository.findAll(Sort.by(order, "name")));
-    }*/
 
 }

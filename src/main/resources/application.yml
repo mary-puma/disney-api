@@ -26,11 +26,8 @@ spring:
         cache:
           use_query_cache: false
           use_second_level_cache: false
-  security:
-    user:
-      name: mary
-      password: mary
-      roles: manager
+
+
 
 ---
 spring:

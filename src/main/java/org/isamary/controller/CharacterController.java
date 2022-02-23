@@ -41,6 +41,7 @@ public class CharacterController {
         }
         return charactersDTO;//devuelve la lista de personajes
     }
+
     @GetMapping("/characters/detail")
     public List<CharacterDetailDTO> detailsCharacters(){
         return characterService.characterDetailsList();

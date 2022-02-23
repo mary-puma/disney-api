@@ -59,5 +59,37 @@ CREATE TABLE IF NOT EXISTS movie_genre
     REFERENCES genre (`id`)
     ON DELETE NO ACTION ON UPDATE NO ACTION
 
-)
+);
+CREATE TABLE IF NOT EXISTS users
+(
+    id          BIGINT NOT NULL AUTO_INCREMENT,
+    username        varchar(255) NOT NULL,
+    email          varchar(255) NOT NULL,
+    password       varchar(255) NOT NULL,
+    CONSTRAINT UNIQUEG_name UNIQUE (username),
+    PRIMARY KEY (id)
+);
+CREATE TABLE IF NOT EXISTS roles
+(
+    id          BIGINT NOT NULL AUTO_INCREMENT,
+    name        varchar(255) NOT NULL,
+    CONSTRAINT UNIQUEG_name UNIQUE (username),
+    PRIMARY KEY (id)
+);
+CREATE TABLE IF NOT EXISTS user_rol
+(
+    users_id         BIGINT NOT NULL,
+    roles_id         BIGINT NOT NULL,
+    PRIMARY KEY (users_id,roles_id),
+
+    CONSTRAINT `FK_USERS_ROLES` FOREIGN KEY (users_id)
+    REFERENCES users (`id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION,
+
+    CONSTRAINT `FK_ROLES_USERS` FOREIGN KEY (`roles_id`)
+    REFERENCES roles (`id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION
+
+);
+
 

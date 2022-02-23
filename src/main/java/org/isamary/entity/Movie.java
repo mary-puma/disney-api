@@ -28,24 +28,23 @@ public class Movie {
     @Column(name="title")
     private String title;
 
+    @Temporal (TemporalType.DATE)
     @Column(name="creation_date")
     private Date creation_date;
 
     @Column(name="score")
     private int score;
 
-   @ManyToMany()//para relacionar tablas
+    @ManyToMany()//para relacionar tablas
     @JoinTable(name = "personage_movie",
             joinColumns=@JoinColumn(name="movie_id"),
             inverseJoinColumns=@JoinColumn(name="personage_id"))
-
     private List<Character> characters;
-
-
 
     public MovieDTO convertMovieToMovieDTO(){
         return new MovieDTO(getImage(),getTitle(),getCreation_date());
     }
+
     public MovieDetailDTO convertMovieToMovieDetailDTO(){
         List<String> charactersName = characters
                 .stream()
@@ -54,7 +53,6 @@ public class Movie {
         return new MovieDetailDTO(getImage(),getTitle(),getCreation_date(),getScore(),charactersName);
 
     }
-
 
     @ManyToMany()//para relacionar tablas
     @JoinTable(name = "movie_genre",

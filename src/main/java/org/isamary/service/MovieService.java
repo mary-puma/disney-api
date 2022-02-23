@@ -1,7 +1,5 @@
 package org.isamary.service;
 
-
-
 import org.isamary.dto.MovieDTO;
 import org.isamary.dto.MovieDetailDTO;
 import org.isamary.entity.Movie;
