@@ -18,16 +18,18 @@ public class CharacterService {
     @Autowired
     private CharacterRepository characterRepository;
 
-
     public List<CharacterDTO> listAllByName(String name) {
         return charactersListToCharactersDTO(characterRepository.findCharacterByName(name));
     }
+
     public List<CharacterDTO> listAllByAge(int age) {
         return charactersListToCharactersDTO(characterRepository.findCharacterByAge(age));
     }
+
     public List<CharacterDTO> listAllByMovie(String movie) {
         return charactersListToCharactersDTO(characterRepository.findCharacterByMovie(movie));
     }
+
     public List<CharacterDTO> listAll() {
         return charactersListToCharactersDTO(characterRepository.findAll());
     }
@@ -35,6 +37,7 @@ public class CharacterService {
     public Character save(Character character){
         return characterRepository.save(character);
     }
+
     public void delete(Character character) {
         characterRepository.delete(character);
     }

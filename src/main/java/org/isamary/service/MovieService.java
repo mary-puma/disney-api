@@ -20,24 +20,29 @@ public class MovieService {
     public List<MovieDTO> movieDTOList(){
         return convertMovieListToMovieDTOList(movieRepository.findAll());
     }
+
     public List<MovieDTO> convertMovieListToMovieDTOList(List<Movie> movies){
         return movies
                 .stream()
                 .map(Movie::convertMovieToMovieDTO)
                 .collect(Collectors.toList());
     }
+
     public List<MovieDetailDTO> movieDetailDTOList(){
         return convertMovieListToMovieDetailDTOList(movieRepository.findAll());
     }
+
     public List<MovieDetailDTO> convertMovieListToMovieDetailDTOList(List<Movie> movies){
         return movies
                 .stream()
                 .map(Movie::convertMovieToMovieDetailDTO)
                 .collect(Collectors.toList());
     }
+
     public Movie saveMovie(Movie movie) {
         return movieRepository.save(movie);
     }
+
     public void deleteMovie(Movie movie) {
      movieRepository.delete(movie);
     }
@@ -45,11 +50,12 @@ public class MovieService {
     public List<MovieDTO> movieDTOListByTitle(String title){
         return convertMovieListToMovieDTOList(movieRepository.findMovieByTitle(title));
     }
+
     public List<MovieDTO> movieDTOListByGenre(String genre){
         return convertMovieListToMovieDTOList(movieRepository.findMovieByGenre(genre));
     }
-    public List<MovieDTO> movieDTOListOrderByCreationDate(Sort.Direction order){
 
+    public List<MovieDTO> movieDTOListOrderByCreationDate(Sort.Direction order){
         if(order.isDescending())
             return convertMovieListToMovieDTOList(movieRepository.orderByCreationDateDesc());
         else

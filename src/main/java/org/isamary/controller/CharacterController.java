@@ -13,14 +13,11 @@ import java.util.List;
 public class CharacterController {
 
     private static final String CHARACTERS = "/characters";
-
     private final CharacterService characterService;
-
 
     public CharacterController(CharacterService characterService){
         this.characterService = characterService;
     }
-
 
     @GetMapping(CHARACTERS)
     public List<CharacterDTO> getCharacters(
@@ -28,7 +25,6 @@ public class CharacterController {
             @RequestParam(name="age",required = false) Integer age,
             @RequestParam(name="movie",required = false) String movie){
         List<CharacterDTO> charactersDTO;
-
 
        if(name!=null){
             charactersDTO = characterService.listAllByName(name);
@@ -45,7 +41,6 @@ public class CharacterController {
     @GetMapping("/characters/detail")
     public List<CharacterDetailDTO> detailsCharacters(){
         return characterService.characterDetailsList();
-
     }
 
     @PostMapping(CHARACTERS)

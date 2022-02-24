@@ -31,7 +31,6 @@ public class MovieController {
             movieDTOList = movieService.movieDTOListByGenre(genre);
         }else if (order!=null){
             movieDTOList = movieService.movieDTOListOrderByCreationDate(order);
-
         } else {
             movieDTOList = movieService.movieDTOList();
         }
@@ -46,15 +45,15 @@ public class MovieController {
     public Movie salveMovie(@RequestBody Movie movie){
         return this.movieService.saveMovie(movie);
     }
+
     @DeleteMapping(MOVIES)
     public  void deleteMovie(@RequestBody Movie movie){
         this.movieService.deleteMovie(movie);
     }
+
     @PutMapping(MOVIES)
     public Movie updateMovie(@RequestBody Movie movie){
         return this.movieService.saveMovie(movie);
     }
-
-
 
 }

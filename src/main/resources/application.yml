@@ -26,6 +26,9 @@ spring:
         cache:
           use_query_cache: false
           use_second_level_cache: false
+app:
+  jwt-secret: JWTSecretKey
+  jwt-expiration-milliseconds: 604800000
 
 
 
