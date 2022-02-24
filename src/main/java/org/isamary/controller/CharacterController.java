@@ -13,6 +13,8 @@ import java.util.List;
 public class CharacterController {
 
     private static final String CHARACTERS = "/characters";
+    private static final String CHARACTERS_DETAIL = "/characters/detail";
+    private static final String CHARACTERS_NAME = "/characters/{name}";
     private final CharacterService characterService;
 
     public CharacterController(CharacterService characterService){
@@ -38,7 +40,7 @@ public class CharacterController {
         return charactersDTO;//devuelve la lista de personajes
     }
 
-    @GetMapping("/characters/detail")
+    @GetMapping(CHARACTERS_DETAIL)
     public List<CharacterDetailDTO> detailsCharacters(){
         return characterService.characterDetailsList();
     }
@@ -48,9 +50,9 @@ public class CharacterController {
         return this.characterService.save(character);
     }
 
-    @DeleteMapping(CHARACTERS)
-    public void deleteCharacter(@RequestBody Character character){
-         this.characterService.delete(character);
+    @DeleteMapping(CHARACTERS_NAME)
+    public void deleteCharacter(@PathVariable(name = "name") String nameCharacter){
+         this.characterService.delete(nameCharacter);
     }
 
     @PutMapping(CHARACTERS)

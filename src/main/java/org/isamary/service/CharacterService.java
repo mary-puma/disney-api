@@ -38,8 +38,8 @@ public class CharacterService {
         return characterRepository.save(character);
     }
 
-    public void delete(Character character) {
-        characterRepository.delete(character);
+    public void delete(String name) {
+        characterRepository.deleteCharacterByName(name);
     }
 
     public List<CharacterDTO> charactersListToCharactersDTO(List<Character> characterList){
@@ -54,7 +54,7 @@ public class CharacterService {
                 .stream()
                 .map(Character::convertCharacterToCharacterDetailDTO)
                 .collect(Collectors.toList());
-    }//es similar a un for each lo que hacemos aca es pasar de la lista personajes los campos que queremos a la lista personajes dto
+    }
 
     public List<CharacterDetailDTO> characterDetailsList() {
         return characterListToCharacterDetailsDTO(characterRepository.findAll());
