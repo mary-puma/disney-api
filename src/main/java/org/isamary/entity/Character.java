@@ -35,7 +35,7 @@ public class Character {
     @Column(name="weight")
     private float weight;
 
-    @ManyToMany(fetch = FetchType.EAGER)//para relacionar tablas
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "personage_movie",
             joinColumns=@JoinColumn(name="personage_id"),
             inverseJoinColumns=@JoinColumn(name="movie_id"))

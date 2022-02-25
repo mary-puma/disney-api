@@ -3,8 +3,10 @@ package org.isamary.repository;
 import org.isamary.entity.Genre;
 import org.isamary.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,8 +25,9 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Query("SELECT m FROM Movie m ORDER BY m.creation_date ASC")
     List<Movie> orderByCreationDateAsc();
 
-
-
-
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM Movie m WHERE m.title=?1")
+    void deleteMovieByTitle(String title);
 
 }

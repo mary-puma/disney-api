@@ -4,6 +4,8 @@ import org.isamary.dto.CharacterDTO;
 import org.isamary.dto.CharacterDetailDTO;
 import org.isamary.entity.Character;
 import org.isamary.service.CharacterService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -51,8 +53,9 @@ public class CharacterController {
     }
 
     @DeleteMapping(CHARACTERS_NAME)
-    public void deleteCharacter(@PathVariable(name = "name") String nameCharacter){
+    public ResponseEntity<?> deleteCharacter(@PathVariable(name = "name") String nameCharacter){
          this.characterService.delete(nameCharacter);
+        return new ResponseEntity<>("personaje eliminado exitosamente", HttpStatus.OK);
     }
 
     @PutMapping(CHARACTERS)

@@ -5,6 +5,8 @@ import org.isamary.dto.MovieDetailDTO;
 import org.isamary.entity.Movie;
 import org.isamary.service.MovieService;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +16,7 @@ public class MovieController {
 
     private static final String MOVIES = "/movies";
     private final MovieService movieService;
+    private static final String MOVIES_TITLE = "/movies/{title}";
 
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
@@ -46,9 +49,10 @@ public class MovieController {
         return this.movieService.saveMovie(movie);
     }
 
-    @DeleteMapping(MOVIES)
-    public  void deleteMovie(@RequestBody Movie movie){
-        this.movieService.deleteMovie(movie);
+    @DeleteMapping(MOVIES_TITLE)
+    public ResponseEntity<?> deleteMovie(@PathVariable(name = "title") String title){
+        this.movieService.deleteMovie(title);
+        return new ResponseEntity<>("pelicula eliminada exitosamente", HttpStatus.OK);
     }
 
     @PutMapping(MOVIES)

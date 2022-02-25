@@ -54,9 +54,10 @@ public class Movie {
 
     }
 
-    @ManyToMany()//para relacionar tablas
+    @ManyToMany()
     @JoinTable(name = "movie_genre",
             joinColumns=@JoinColumn(name="movie_id"),
             inverseJoinColumns=@JoinColumn(name="genre_id"))
     private List<Genre> genres;
+
 }

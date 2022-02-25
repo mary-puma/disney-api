@@ -43,8 +43,8 @@ public class MovieService {
         return movieRepository.save(movie);
     }
 
-    public void deleteMovie(Movie movie) {
-     movieRepository.delete(movie);
+    public void deleteMovie(String title) {
+     movieRepository.deleteMovieByTitle(title);
     }
 
     public List<MovieDTO> movieDTOListByTitle(String title){

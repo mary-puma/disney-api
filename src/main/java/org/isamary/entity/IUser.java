@@ -28,7 +28,7 @@ public class IUser {
     @Column(name="email")
     private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)//para relacionar tablas
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(name = "user_rol",
             joinColumns=@JoinColumn(name="user_id"),
             inverseJoinColumns=@JoinColumn(name="rol_id"))
