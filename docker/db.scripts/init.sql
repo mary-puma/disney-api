@@ -66,14 +66,15 @@ CREATE TABLE IF NOT EXISTS users
     username        varchar(255) NOT NULL,
     email          varchar(255) NOT NULL,
     password       varchar(255) NOT NULL,
-    CONSTRAINT UNIQUEG_name UNIQUE (username),
+    CONSTRAINT UNIQUEU_username UNIQUE (username),
+    CONSTRAINT UNIQUEU_email UNIQUE (email),
     PRIMARY KEY (id)
 );
 CREATE TABLE IF NOT EXISTS roles
 (
     id          BIGINT NOT NULL AUTO_INCREMENT,
     name        varchar(255) NOT NULL,
-    CONSTRAINT UNIQUEG_name UNIQUE (username),
+    CONSTRAINT UNIQUER_name UNIQUE (name),
     PRIMARY KEY (id)
 );
 CREATE TABLE IF NOT EXISTS user_rol
@@ -91,5 +92,19 @@ CREATE TABLE IF NOT EXISTS user_rol
     ON DELETE NO ACTION ON UPDATE NO ACTION
 
 );
+
+insert into genre
+(id,image, name) VALUES
+(1,'image diversion','diversion' ),
+(2,'image aventura','aventura' ),
+(3,'image misterio','misterio' )
+;
+
+insert into roles
+(id,name ) VALUES
+(1, 'ROLE_USER' ),
+(2, 'ROLE_ADMIN');
+
+
 
 

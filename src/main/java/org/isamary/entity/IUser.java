@@ -8,8 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }),
-        @UniqueConstraint(columnNames = { "email" }) })
+@Table(name = "users")
 @Getter
 @Setter
 public class IUser {
@@ -30,8 +29,8 @@ public class IUser {
 
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(name = "user_rol",
-            joinColumns=@JoinColumn(name="user_id"),
-            inverseJoinColumns=@JoinColumn(name="rol_id"))
+            joinColumns=@JoinColumn(name="users_id"),
+            inverseJoinColumns=@JoinColumn(name="roles_id"))
     private Set<Rol> roles = new HashSet<>();
 
 
